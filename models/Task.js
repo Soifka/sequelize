@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Task.belongsTo(models.User, {    // --> each task belongs to some user
+        foreignKey: 'userId'
+      });  
     }
   }
   Task.init({
@@ -46,3 +49,10 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Task;
 };
+
+
+/*
+Как создать связь между таблицами:
+1. На уровне таблиц иметь колонки с внешним ключом (implement foreign key)
+2. Прописать ассоциации на уровне моделей (метод associate в модели)
+*/

@@ -47,6 +47,7 @@ module.exports.deleteByPk = async(req, res, next) => {
     }
 }
 
+/*  Работаем со всей таблицей -->
 module.exports.updateUser = async (req, res, next) => {
     try {
         const {params: {id}, body} = req;
@@ -57,6 +58,19 @@ module.exports.updateUser = async (req, res, next) => {
         });
         console.log(result);
         return res.status(200).send();
+    } catch (error) {
+        next(error);
+    }
+}
+*/
+
+// находим конкретного юзера, а потом его апдейтим -->
+module.exports.updateUser = async (req, res, next) => {
+    try {
+        const {params: {id}, body} = req;
+        const foundUser = await User.findByPk(id);
+        const result = await foundUser.update(body);
+        return res.status(200).send(result);
     } catch (error) {
         next(error);
     }

@@ -21,20 +21,22 @@ module.exports.findAll = async(req, res, next) => {
 
 module.exports.findByPk = async(req, res, next) => {
     try {
-        const {params: {id}} = req;
-        const foundUser = await User.findByPk(id);
-        return res.status(200).send(foundUser);
+        // const {params: {id}} = req;
+        // const foundUser = await User.findByPk(id);
+        const {userInstance} = req;  // --> благодаря middleware user.mv.js
+        return res.status(200).send(userInstance);
     } catch (error) {
+        console.log('some error')
         next(error);
     }
 }
 
 module.exports.deleteByPk = async(req, res, next) => {
     try {
-        const {params: {id}} = req;
+        const {params: {userId}} = req;
         const rowsCount = await User.destroy({
             where: {
-                id
+                id: userId
             }
         });
         if(rowsCount) {
@@ -67,9 +69,8 @@ module.exports.updateUser = async (req, res, next) => {
 // находим конкретного юзера, а потом его апдейтим -->
 module.exports.updateUser = async (req, res, next) => {
     try {
-        const {params: {id}, body} = req;
-        const foundUser = await User.findByPk(id);
-        const result = await foundUser.update(body);
+        const {userInstance, body} = req;
+        const result = await userInstance.update(body);
         return res.status(200).send(result);
     } catch (error) {
         next(error);

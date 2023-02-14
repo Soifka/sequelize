@@ -13,5 +13,7 @@ router.put('/user/:id', UserController.updateUser);
 
 
 router.post('/task/:userId', TaskController.createTask);
+router.get('/tasks/:userId', TaskController.getUserTasks);
+router.get('/task-count/:userId', TaskController.getUserCountTasks);
 
 module.exports = router;

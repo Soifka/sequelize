@@ -30,3 +30,17 @@ module.exports.getUserGroups = async(req, res, next) => {
         next(error);
     }
 }
+
+module.exports.deleteUserFromGroup = async(req, res, next) => {
+    try {
+        const {userInstance, params: {groupId}} = req;
+        const groupInstance = await Group.findByPk(groupId);
+        const rowCount = await groupInstance.removeUser(userInstance);
+        if(rowCount) {
+            return res.status(200).send('User successfully deleted');
+        }
+        return res.status(200).send('User already is not in group');
+    } catch (error) {
+        next(error);
+    }
+}

@@ -5,7 +5,11 @@ const UserError = require('../errors/UserError');
 module.exports.getUserInstance = async(req, res, next) => {
     try {
         const {params: {userId}} = req;
-        const user = await User.findByPk(userId);
+        const user = await User.findByPk(userId, {
+            attributes: {
+                exclude: ['password']
+            }
+        });
         if(user) {
             req.userInstance = user;
             next();

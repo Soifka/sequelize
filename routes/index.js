@@ -10,7 +10,7 @@ const router = Router();
 
 router.post('/user', validateUser, UserController.createUser);
 router.get('/users', UserController.findAll);
-router.get('/user:userId', getUserInstance, UserController.findByPk);
+router.get('/user/:userId', getUserInstance, UserController.findByPk);
 router.get('/user/groups/:userId', UserController.getUserWithGroups);
 router.delete('/user/:userId', UserController.deleteByPk);
 router.put('/user/:userId', getUserInstance, UserController.updateUser);

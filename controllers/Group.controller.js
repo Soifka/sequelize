@@ -76,9 +76,19 @@ module.exports.getGroupWithUsers = async(req, res, next) => {
 
 module.exports.createGroupImage = async(req, res, next) => {
     try {
-        const { params: {groupId} } = req;
-        console.log(req.file)
-        res.send({groupId})
+        const { params: {groupId}, file: {filename} } = req;
+        const [rowCount, [updatedGroup]] = await Group.update(
+            {
+            imagePath: filename
+            },
+            {
+                where: {
+                id: groupId
+                },
+                returning: true
+            }    
+        )
+        res.status(200).send(updatedGroup);
     } catch (error) {
         next(error);
     }

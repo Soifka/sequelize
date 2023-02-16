@@ -1,4 +1,4 @@
-const {Group, User} = require("../models/");
+const { Group, User } = require("../models/");
 
 module.exports.createGroup = async(req, res, next) => {
     try {
@@ -69,6 +69,16 @@ module.exports.getGroupWithUsers = async(req, res, next) => {
             }]
         }); */
         return res.status(200).send(groupWithUsers);
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports.createGroupImage = async(req, res, next) => {
+    try {
+        const { params: {groupId} } = req;
+        console.log(req.file)
+        res.send({groupId})
     } catch (error) {
         next(error);
     }

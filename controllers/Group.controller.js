@@ -48,14 +48,15 @@ module.exports.deleteUserFromGroup = async(req, res, next) => {
 module.exports.getGroupWithUsers = async(req, res, next) => {
     try {
         const { params: {groupId} } = req;
-        /*const groupWithUsers = await Group.findByPk(groupId, {
+        const groupWithUsers = await Group.findByPk(groupId, {
             include: [{
                 model: User,
                 attributes: {
                     exclude: 'password'
                 }
             }]
-        });*/
+        });
+        /* другой вариант решения -->
         const groupWithUsers = await Group.findAll({
             where: {
                 id: groupId
@@ -66,7 +67,7 @@ module.exports.getGroupWithUsers = async(req, res, next) => {
                     exclude: 'password'
                 }
             }]
-        });
+        }); */
         return res.status(200).send(groupWithUsers);
     } catch (error) {
         next(error);

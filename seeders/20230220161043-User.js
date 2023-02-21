@@ -8,7 +8,7 @@ module.exports = {
         {
           "first_name": "Mary",
           "last_name": "Doe",
-          "email": "m.doe@email.com",
+          "email": "m.doe@gmail.com",
           "password": "jhhafgfhcfhsd",
           "birthday": "1988-01-08",
           "gender": "female",
@@ -18,7 +18,7 @@ module.exports = {
         {
           "first_name": "Jane",
           "last_name": "Doe",
-          "email": "j.doe@email.com",
+          "email": "j.doe@gmail.com",
           "password": "dsvbfbfbbg",
           "birthday": "1988-01-08",
           "gender": "female",
@@ -28,7 +28,7 @@ module.exports = {
         {
           "first_name": "John",
           "last_name": "Doe",
-          "email": "john.doe@email.com",
+          "email": "john.doe@gmail.com",
           "password": "qweertyyuio",
           "birthday": "1988-01-08",
           "gender": "male",
